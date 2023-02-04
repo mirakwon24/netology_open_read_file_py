@@ -1,0 +1,1 @@
+# netology_open_read_file_py
