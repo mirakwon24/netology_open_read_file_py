@@ -25,27 +25,30 @@ dict_collector('cook_book.txt')
 def get_shop_list_by_dishes(dishes, persons=int):
 
     menu = dict_collector('cook_book.txt')
-    print('Узнай больше в нашем меню :')
-    print(menu)
+    print('Познакомьтесь с Нашим меню :')
+    pprint(menu)
     print()
-    shopping_list = {}
-
-    try:
+    ingridient_list = {}
+     try:
         for dish in dishes:
             for point in (menu[dish]):
-                
-                point_list = dict([(point['ingredient_name'], {'measure': point['measure'], 'quantity': int(point['quantity'])*persons})])
-                if shopping_list.get(point['ingredient_name']):
-                    
-                    other_point = (int(shopping_list[point['ingredient_name']]['quantity']) +
+              
+                items_list = dict([(point['ingredient_name'], {'measure': point['measure'], 'quantity': int(point['quantity'])*persons})])
+                if ingridient_list.get(point['ingredient_name']):
+                   
+                    extra_point = (int(ingridient_list[point['ingredient_name']]['quantity']) +
                                   int(point_list[point['ingredient_name']]['quantity']))
-                    
-                    shopping_list[point['ingredient_name']]['quantity'] = other_point
+                   
+                    ingridient_list[item['ingredient_name']]['quantity'] = extra_point
 
                 else:
-                  
-                    shopping_list.update(point_list)
+                   
+                   ingridient_list.update(point_list)
 
         print(f"Для приготовления блюд на {persons} человек  нам необходимо купить:")
-        
-   get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2)
+        pprint(ingridient_list)
+    except KeyError:
+        print("Вы ошиблись в названии блюда, проверьте ввод")
+
+
+get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2)
